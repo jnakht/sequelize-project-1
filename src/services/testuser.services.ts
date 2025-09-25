@@ -36,3 +36,11 @@ export async function testCreateUsers(data: any) {
 }
 
 
+export async function testGetAllUsers() {
+    
+     const allUsers = await TestUser.findAll(); 
+  
+    return allUsers;
+}
+
+
