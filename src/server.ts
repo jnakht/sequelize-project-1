@@ -1,9 +1,11 @@
 
+import dotenv from "dotenv"
 import { Server } from "http"
 import express from "express"
 import { connectAndSync } from "./config/db";
 import app from "./app";
 
+dotenv.config();
 let server: Server;
 const PORT = process.env.PORT || 5000;
 
