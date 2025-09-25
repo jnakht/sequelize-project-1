@@ -12,15 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
+const dotenv_1 = __importDefault(require("dotenv"));
 const db_1 = require("./config/db");
+const app_1 = __importDefault(require("./app"));
+dotenv_1.default.config();
 let server;
-const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5000;
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, db_1.connectAndSync)();
-        app.listen(PORT, () => {
+        app_1.default.listen(PORT, () => {
             console.log(`🚀 Server is Running on http://localhost:${PORT}`);
         });
     }

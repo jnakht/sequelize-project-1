@@ -1,31 +1,66 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../config/db";
+import { DataTypes, Model, Optional } from "sequelize";
+import { sequelize } from "../config/db"
 
+export interface UserAttributes {
+    employeeId: string;
+    username: string;
+    email: string;
+    phone: string;
+    password: string;
+    role: "admin" | "hr" | "employee";
+}
 
-export const User = sequelize.define(
-    'User',
+type UserCreationAttributes = Optional<UserAttributes, "employeeId">;
+
+export class User 
+    extends Model<UserAttributes, UserCreationAttributes>
+    implements UserAttributes 
+{
+    public employeeId!: string;
+    public username!: string;
+    public email!: string;
+    public phone!: string;
+    public password!: string;
+    public role!: "admin" | "hr" | "employee";
+
+    // timestamps
+    public readonly createdAt!: Date;
+    public readonly updatedAt!: Date;
+}
+
+User.init(
     {
-        firstName: {
-            type: DataTypes.STRING,
+        employeeId: {
+            type: DataTypes.STRING(50),
+            primaryKey: true,
+        },
+        username: {
+            type: DataTypes.STRING(50),
             allowNull: false,
         },
-        lastName: {
-            type: DataTypes.STRING,
+        email: {
+            type: DataTypes.STRING(100),
+            allowNull: false,
+            validate: { isEmail: true },
         },
-        // email: {
-        //     type: DataTypes.STRING,
-        // },
-        createdAt: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW,
-        }
+        phone: {
+            type: DataTypes.STRING(20),
+            allowNull: false,
+        },
+        password: {
+            type: DataTypes.STRING(255),
+            allowNull: false,
+        },
+        role: {
+            type: DataTypes.ENUM("admin", "hr", "employee"),
+            allowNull: false,
+            defaultValue: "employee",
+        },
     },
     {
-        tableName: 'users',
+        sequelize,
+        tableName: "users",
+        modelName: "User",
         timestamps: true,
-        createdAt: false,
-        updatedAt: "updatedTimeStamp"
     }
 )
-
-console.log(User === sequelize.models.User);
