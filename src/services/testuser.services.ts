@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { sequelize } from "../config/db";
 import { TestUser } from "../models/userTest.model";
 
@@ -69,13 +70,91 @@ export async function testGetAllUsers() {
     //     }
     // })
 
-     const allUsers = await TestUser.findAll({
-        attributes: {
-            exclude: ["age"]
+    //  const allUsers = await TestUser.findAll({
+    //     attributes: {
+    //         exclude: ["age"]
+    //     }
+    // })
+
+
+    // where clause
+    // const allUsers = await TestUser.findAll({
+    //     where: {
+    //         id: 2,
+    //         isActive: true
+    //     }
+    // })
+    // const allUsers = await TestUser.findAll({
+    //     where: {
+    //         firstName: "John",
+    //         age: 27,
+    //     }
+    // })
+    // const allUsers = await TestUser.findAll({
+    //     where: {
+    //         id: [2, 3, 4],
+    //         isActive: true,
+    //     }
+    // })
+
+    // const allUsers = await TestUser.findAll({
+    //     where: {
+    //         id: {
+    //             [Op.eq]: 2
+    //         }
+    //     }
+    // })
+    // const allUsers = await TestUser.findAll({
+    //     where: {
+    //         id: {
+    //             [Op.in]: [2, 3, 5]
+    //         }
+    //     }
+    // })
+    // const allUsers = await TestUser.findAll({
+    //     where: {
+    //        [Op.and]: [{id: 3}, {isActive: false}]
+    //     }
+    // })
+    // const allUsers = await TestUser.findAll({
+    //     where: {
+    //        id: {
+    //         [Op.or]: [2, 3]
+    //        }
+    //     }
+    // })
+
+    //    // rank < 1000 OR rank IS NULL
+    // const allUsers = await TestUser.findAll({
+    //     where: {
+    //       rank: {
+    //         [Op.or]: {
+    //         [Op.lt]: 1000,
+    //         [Op.eq]: null
+    //       }
+    //       }
+    //     }
+    // })
+
+    //  const updatedUser = await TestUser.update({
+    //     firstName: "Jisan",
+    //     age: 22,
+    //  }, 
+    // {
+    //     where: {
+    //         id: 50
+    //     }
+    // })
+
+    const deleteUser = await TestUser.destroy({
+        where: {
+            id: 2
         }
     })
   
-    return allUsers;
+    // return allUsers;
+    // return updatedUser; // update returns 1 or 0
+    return deleteUser; // delete return 1 or 0
 }
 
 

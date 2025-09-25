@@ -1,10 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../config/db";
 
-type TTestUser = {
-    firstName: string;
-    lastName: string;
-}
+
 
 export const TestUser = sequelize.define(
     'TestUser',
@@ -16,16 +13,19 @@ export const TestUser = sequelize.define(
         lastName: {
             type: DataTypes.STRING,
         },
-        // email: {
-        //     type: DataTypes.STRING,
-        // },
-        // createdAt: {
-        //     type: DataTypes.DATE,
-        //     defaultValue: DataTypes.NOW,
-        // }
+        email: {
+            type: DataTypes.STRING,
+        },
+        password: {
+            type: DataTypes.STRING,
+        },
         age: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        isActive: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
         }
     },
     {
