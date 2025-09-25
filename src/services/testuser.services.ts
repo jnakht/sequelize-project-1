@@ -1,3 +1,4 @@
+import { sequelize } from "../config/db";
 import { TestUser } from "../models/userTest.model";
 
 
@@ -38,7 +39,41 @@ export async function testCreateUsers(data: any) {
 
 export async function testGetAllUsers() {
     
-     const allUsers = await TestUser.findAll(); 
+    //  const allUsers = await TestUser.findAll(); 
+
+    // get specified fields
+    // const allUsers = await TestUser.findAll({
+    //     attributes: ["firstName", "id"]
+    // })
+
+
+    // attributes can be renamed
+    // const allUsers = await TestUser.findAll({
+    //     attributes: [["firstName", "FN"], ["id", "unique_id"]]
+    // })
+
+    // aggregation queries, count
+    // const allUsers = await TestUser.findAll({
+    //     attributes: [[sequelize.fn('COUNT', sequelize.col("firstName")), "nameCount"]]
+    // })
+
+    // aggregation queries, count
+    // const allUsers = await TestUser.findAll({
+    //     attributes: [[sequelize.fn('SUM', sequelize.col("age")), "age_of_sum"]],
+       
+    // })
+
+    //  const allUsers = await TestUser.findAll({
+    //     attributes: {
+    //         include: [[sequelize.fn("COUNT", sequelize.col('age')), "total_age"]]
+    //     }
+    // })
+
+     const allUsers = await TestUser.findAll({
+        attributes: {
+            exclude: ["age"]
+        }
+    })
   
     return allUsers;
 }
