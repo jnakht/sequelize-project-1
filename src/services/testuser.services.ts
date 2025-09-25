@@ -25,3 +25,14 @@ export async function testCreateUser(data: {
     console.log(testUser.toJSON());        // persist changes to DB
     return testUser.toJSON(); 
 }
+
+
+export async function testCreateUsers(data: any) {
+    
+     const testUsers = await TestUser.bulkCreate(data); 
+     
+    // return testUsers.toJSON(); 
+    return testUsers;
+}
+
+
