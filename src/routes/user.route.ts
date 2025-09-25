@@ -1,9 +1,11 @@
 import { Router } from "express";
 import * as userController from "../controllers/user.controller"
+import * as testuserController from "../controllers/testuser.controller"
 
 const router = Router();
 
 router.post("/register", userController.createUser);
+router.post("/test-register", testuserController.createUser);
 router.get("/all-users", userController.getUsers);
 
 
