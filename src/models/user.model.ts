@@ -60,8 +60,10 @@ User.init(
     },
     {
         sequelize,
+        paranoid: true,
         tableName: "users",
         modelName: "User",
         timestamps: true,
+        deletedAt: true,
     }
 )

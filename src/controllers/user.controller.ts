@@ -23,3 +23,14 @@ export async function getUsers(req: Request, res: Response) {
     // res.json(safeUsers);
     res.json(users);
 }
+
+
+export async function deleteUser(req: Request, res: Response) {
+    try {
+        const deletedUser = await userService.deleteUser(req.body);
+      
+        res.status(201).json(deletedUser);
+    } catch (error) {
+        res.status(400).json({ error: (error as Error).message });
+    }
+}

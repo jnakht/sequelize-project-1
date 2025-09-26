@@ -7,6 +7,7 @@ import * as studentCourseController from "../controllers/student-course.controll
 const router = Router();
 
 router.post("/register", userController.createUser);
+router.delete("/delete", userController.deleteUser);
 router.post("/test-register", testuserController.createUser);
 router.post("/test-register-users", testuserController.createUsers);
 // router.get("/testGetAllUsers", testuserController.getAllUsers);

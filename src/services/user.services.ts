@@ -34,3 +34,14 @@ export async function getUsers() {
         }
     });
 }
+
+
+export async function deleteUser( data: {
+    employeeId: number;
+}) {
+    return User.destroy({ 
+        where: {
+            employeeId: data.employeeId,
+        }
+    });
+}
