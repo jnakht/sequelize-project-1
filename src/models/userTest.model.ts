@@ -31,13 +31,25 @@ export const TestUser = sequelize.define(
         },
         email: {
             type: DataTypes.STRING,
+            allowNull: false,
+            // unique: true,
         },
         password: {
             type: DataTypes.STRING,
+            validate: {
+                is: /^.{8,}$/,
+            }
         },
         age: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            validate: {
+                isEven(value) {
+                    if (parseInt(value) % 2 === 0) {
+                        throw new Error("Even Values are not allowed as age!")
+                    }
+                }
+            }
         },
         isActive: {
             type: DataTypes.BOOLEAN,

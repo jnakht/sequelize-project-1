@@ -1,4 +1,4 @@
-import { Op } from "sequelize";
+import { Op, QueryTypes } from "sequelize";
 import { sequelize } from "../config/db";
 import { TestUser } from "../models/userTest.model";
 
@@ -38,7 +38,7 @@ export async function testCreateUsers(data: any) {
 }
 
 
-export async function testGetAllUsers() {
+export async function testGetAllUsers(data: any) {
     
     //  const allUsers = await TestUser.findAll(); 
 
@@ -161,7 +161,62 @@ export async function testGetAllUsers() {
 
 
     // getter setter
-    const testUser = await TestUser.findAll();
+    // const testUser = await TestUser.findAll();
+
+
+    // update email
+//     const testUser = await TestUser.update({
+//         email: "hannah3@gmail.com",
+//     }, 
+// {
+//     where: {
+//         id: 12,
+//     }
+// })
+//     return testUser;
+
+
+
+    // checking unique constraints
+    // const testUser = await TestUser.update({
+    //     email: "nadim6@gmail.com"
+    // }, {
+    //     where: {
+    //         id: 25
+    //     }
+    // });
+    // return testUser;
+
+    // const [results, metadata] = await sequelize.query('SELECT * FROM users');
+
+    // const [results, metadata] = await sequelize.query('UPDATE test_users SET age = 100 WHERE id = 4');
+
+    // const [results, metadata] = await sequelize.query('SELECT * FROM test_users', {
+    //     type: QueryTypes.SELECT
+    // });
+
+    // to get the features of getter, setter, virtuals, you must pass the model instance
+    // const [results, metadata] = await sequelize.query('SELECT * FROM test_users', {
+    //     // type: QueryTypes.SELECT,
+    //     model: TestUser,
+    //     mapToModel: true,
+    // });
+    // return { results, metadata };
+
+
+    // replacements
+    // const testUser = await sequelize.query('SELECT * FROM test_users where id >= ?', {
+    //     replacements: ['5']
+    // })
+    // return testUser;
+
+    // const testUser = await sequelize.query('SELECT * FROM test_users where id >= :id AND age >= :age', {
+    //     replacements: { id: '5', age: '20' }
+    // })
+
+    const testUser = await sequelize.query('SELECT * FROM test_users where id IN(:id)', {
+        replacements: { id: ['24', '26'] }
+    })
     return testUser;
 }
 
