@@ -146,15 +146,74 @@ export async function testGetAllUsers() {
     //     }
     // })
 
-    const deleteUser = await TestUser.destroy({
-        where: {
-            id: 2
-        }
-    })
+    // const deleteUser = await TestUser.destroy({
+    //     where: {
+    //         id: 2
+    //     }
+    // })
+
+    // const orderUsers = await TestUser.findAll({
+    //     order: [["age", "DESC"]]
+    // })
+
+    // const orderUsers = await TestUser.findAll({
+    //     order: [
+    //         ["age", "DESC"],
+    //         ["firstName", "ASC"]
+    //     ]
+    // })
+
+    //  const orderUsers = await TestUser.findAll({
+    //    order: [[sequelize.fn('MAX', sequelize.col("age")), "DESC"]]
+    // })
+
+    //  const orderUsers = await TestUser.findAll({
+    //    order: sequelize.random(),
+    // })
   
+
+    // find by pk
+    // const testUser = await TestUser.findByPk(5);
+
+    // findOne
+    // const testUser = await TestUser.findOne({
+    //     where: {
+    //         id: {
+    //             [Op.gt]: 5,
+    //         }
+    //     }
+    // });
+
+    // find or create
+    // const [data, created] = await TestUser.findOrCreate({
+    //     where: {
+    //         id: 2,
+    //     },
+    //     defaults: {
+    //         firstName: "Nadim",
+    //         lastName: "Khan",
+    //         age: 6,
+    //         email: "nadim@gmail.com",
+    //     }
+    // });
+
+    // findAndCountAll
+    const { count, rows } = await TestUser.findAndCountAll({
+        where: {
+            id: {
+                [Op.gte]: 5,
+            }
+        },
+        limit: 5,
+        offset: 5,
+    })
+
     // return allUsers;
     // return updatedUser; // update returns 1 or 0
-    return deleteUser; // delete return 1 or 0
+    // return deleteUser; // delete return 1 or 0
+    // return orderUsers;
+    // return [data, created];
+    return { count, rows};
 }
 
 
