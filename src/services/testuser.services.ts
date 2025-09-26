@@ -146,15 +146,23 @@ export async function testGetAllUsers() {
     //     }
     // })
 
-    const deleteUser = await TestUser.destroy({
-        where: {
-            id: 2
-        }
-    })
+    // const deleteUser = await TestUser.destroy({
+    //     where: {
+    //         id: 2
+    //     }
+    // })
   
     // return allUsers;
     // return updatedUser; // update returns 1 or 0
-    return deleteUser; // delete return 1 or 0
+    // return deleteUser; // delete return 1 or 0
+
+
+
+
+
+    // getter setter
+    const testUser = await TestUser.findAll();
+    return testUser;
 }
 
 

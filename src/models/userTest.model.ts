@@ -9,9 +9,25 @@ export const TestUser = sequelize.define(
         firstName: {
             type: DataTypes.STRING,
             allowNull: false,
+            get() {
+                const rawValue = this.getDataValue('firstName');
+                return rawValue ? "Mr. " + rawValue : null;
+            }
         },
         lastName: {
             type: DataTypes.STRING,
+            set(value) {
+                this.setDataValue('lastName', value + " Khan")
+            }
+        },
+        fullName: {
+            type: DataTypes.VIRTUAL,
+            get() {
+                return `${this.getDataValue('firstName')} ${this.getDataValue('lastName')}`;
+            },
+            set(value) {
+                throw new Error("FullName is Taken from firstName and lastName");
+            }
         },
         email: {
             type: DataTypes.STRING,
