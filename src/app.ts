@@ -3,6 +3,7 @@ import express, { Request, Response } from "express"
 import cors from "cors"
 import { router } from "./routes";
 import notFound from "./middlewares/notFound";
+import './association/association'
 
 const app = express();
 
