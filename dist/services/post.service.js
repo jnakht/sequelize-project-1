@@ -9,22 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sequelize = void 0;
-exports.connectAndSync = connectAndSync;
-const sequelize_1 = require("sequelize");
-const env_1 = require("./env");
-exports.sequelize = new sequelize_1.Sequelize(env_1.env.db.name, env_1.env.db.user, env_1.env.db.pass, {
-    host: env_1.env.db.host,
-    port: env_1.env.db.port,
-    dialect: "mysql",
-    logging: false,
-});
-function connectAndSync() {
+exports.createPost = createPost;
+const posts_model_1 = require("../models/posts.model");
+function createPost(data) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield exports.sequelize.authenticate();
-        console.log("✅ Connected To Database!");
-        yield exports.sequelize.sync({ force: true });
-        // await sequelize.sync();
-        console.log("✅ Tables Created Or Updated!");
+        return posts_model_1.Post.create(data);
     });
 }

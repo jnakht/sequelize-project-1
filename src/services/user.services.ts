@@ -2,6 +2,9 @@
 import bcrypt from "bcryptjs"
 import { User } from "../models/user.model";
 import { Profile } from "../models/profile.model";
+import { Post } from "../models/posts.model";
+
+
 export async function createUser( data: {
     username: string;
     email: string;
@@ -17,10 +20,17 @@ export async function createUser( data: {
 
 
 export async function getUsers() {
+    // return User.findAll({
+    //     include: {
+    //         model: Profile, 
+    //         as: "profile"
+    //     }
+    // });
+
     return User.findAll({
         include: {
-            model: Profile, 
-            as: "profile"
+            model: Post, 
+            as: "post"
         }
     });
 }

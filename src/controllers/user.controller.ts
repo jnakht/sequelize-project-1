@@ -6,7 +6,7 @@ import * as profileService from "../services/profile.services"
 export async function createUser(req: Request, res: Response) {
     try {
         const user = await userService.createUser(req.body);
-        const profile = await profileService.createProfile({ bio: "Hufflepuff", userId: user.employeeId as number });
+        // const profile = await profileService.createProfile({ bio: "Hufflepuff", userId: user.employeeId as number });
         res.status(201).json(user);
     } catch (error) {
         res.status(400).json({ error: (error as Error).message });

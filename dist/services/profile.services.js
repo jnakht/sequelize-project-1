@@ -8,28 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = createUser;
-exports.getUsers = getUsers;
-const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const user_model_1 = require("../models/user.model");
+exports.createProfile = createProfile;
 const profile_model_1 = require("../models/profile.model");
-function createUser(data) {
+function createProfile(data) {
     return __awaiter(this, void 0, void 0, function* () {
-        const hashedPassword = yield bcryptjs_1.default.hash(data.password, 10);
-        return user_model_1.User.create(Object.assign(Object.assign({}, data), { password: hashedPassword }));
-    });
-}
-function getUsers() {
-    return __awaiter(this, void 0, void 0, function* () {
-        return user_model_1.User.findAll({
-            include: {
-                model: profile_model_1.Profile,
-                as: "profile"
-            }
-        });
+        return profile_model_1.Profile.create(data);
     });
 }

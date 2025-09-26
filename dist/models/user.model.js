@@ -8,8 +8,9 @@ class User extends sequelize_1.Model {
 exports.User = User;
 User.init({
     employeeId: {
-        type: sequelize_1.DataTypes.STRING(50),
+        type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
     },
     username: {
         type: sequelize_1.DataTypes.STRING(50),

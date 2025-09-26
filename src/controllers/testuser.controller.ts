@@ -18,11 +18,11 @@ export async function createUsers(req: Request, res: Response) {
     }
 }
 
-export async function getAllUsers(req: Request, res: Response) {
-    try {
-        const users = await testuserServices.testGetAllUsers();
-        res.status(201).json(users);
-    } catch (error) {
-        res.status(400).json({ error: (error as Error).message });
-    }
-}
+// export async function getAllUsers(req: Request, res: Response) {
+//     try {
+//         const users = await testuserServices.testGetAllUsers();
+//         res.status(201).json(users);
+//     } catch (error) {
+//         res.status(400).json({ error: (error as Error).message });
+//     }
+// }

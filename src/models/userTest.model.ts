@@ -44,7 +44,7 @@ export const TestUser = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
-                isEven(value) {
+                isEven(value: any) {
                     if (parseInt(value) % 2 === 0) {
                         throw new Error("Even Values are not allowed as age!")
                     }
