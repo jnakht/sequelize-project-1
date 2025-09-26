@@ -43,14 +43,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = createUser;
-exports.getUsers = getUsers;
-const userService = __importStar(require("../services/user.services"));
-const profileService = __importStar(require("../services/profile.services"));
+exports.createUsers = createUsers;
+const testuserServices = __importStar(require("../services/testuser.services"));
 function createUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const user = yield userService.createUser(req.body);
-            const profile = yield profileService.createProfile({ bio: "Hufflepuff", userId: user.employeeId });
+            const user = yield testuserServices.testCreateUser(req.body);
             res.status(201).json(user);
         }
         catch (error) {
@@ -58,15 +56,22 @@ function createUser(req, res) {
         }
     });
 }
-function getUsers(req, res) {
+function createUsers(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const users = yield userService.getUsers();
-        //remove password and send 
-        // const safeUsers = users.map( (user) => {
-        //     const { password, ...data } = user.toJSON();
-        //     return data;
-        // })
-        // res.json(safeUsers);
-        res.json(users);
+        try {
+            const users = yield testuserServices.testCreateUsers(req.body);
+            res.status(201).json(users);
+        }
+        catch (error) {
+            res.status(400).json({ error: error.message });
+        }
     });
 }
+// export async function getAllUsers(req: Request, res: Response) {
+//     try {
+//         const users = await testuserServices.testGetAllUsers();
+//         res.status(201).json(users);
+//     } catch (error) {
+//         res.status(400).json({ error: (error as Error).message });
+//     }
+// }

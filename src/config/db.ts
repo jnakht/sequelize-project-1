@@ -14,7 +14,7 @@ export async function connectAndSync() {
     await sequelize.authenticate();
     console.log("✅ Connected To Database!");
 
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ force: true });
     // await sequelize.sync();
     
     console.log("✅ Tables Created Or Updated!");

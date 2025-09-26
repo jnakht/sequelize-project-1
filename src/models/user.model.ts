@@ -2,7 +2,7 @@ import { DataTypes, Model, Optional } from "sequelize";
 import { sequelize } from "../config/db"
 
 export interface UserAttributes {
-    employeeId: string;
+    employeeId: number;
     username: string;
     email: string;
     phone: string;
@@ -16,7 +16,7 @@ export class User
     extends Model<UserAttributes, UserCreationAttributes>
     implements UserAttributes 
 {
-    public employeeId!: string;
+    public employeeId!: number;
     public username!: string;
     public email!: string;
     public phone!: string;
@@ -31,8 +31,9 @@ export class User
 User.init(
     {
         employeeId: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         username: {
             type: DataTypes.STRING(50),
