@@ -1,5 +1,6 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, HasManyGetAssociationsMixin, Model, Optional } from "sequelize";
 import { sequelize } from "../config/db"
+import { Post } from "./posts.model";
 
 export interface UserAttributes {
     employeeId: number;
@@ -22,6 +23,7 @@ export class User
     public phone!: string;
     public password!: string;
     public role!: "admin" | "hr" | "employee";
+    public getPosts!: HasManyGetAssociationsMixin<Post>;
 
     // timestamps
     public readonly createdAt!: Date;

@@ -9,3 +9,12 @@ export async function createPost(req: Request, res: Response) {
         res.status(400).json({ error: (error as Error).message });
     }
 }
+
+export async function getPost(req: Request, res: Response) {
+    try {
+        const getPostWithUser = await postService.getPostWithUser();
+        res.status(201).json(getPostWithUser);
+    } catch (error) {
+        res.status(400).json({ error: (error as Error).message });
+    }
+}

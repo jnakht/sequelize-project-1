@@ -14,9 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = createUser;
 exports.getUsers = getUsers;
+exports.deleteUser = deleteUser;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_model_1 = require("../models/user.model");
-const profile_model_1 = require("../models/profile.model");
+const posts_model_1 = require("../models/posts.model");
 function createUser(data) {
     return __awaiter(this, void 0, void 0, function* () {
         const hashedPassword = yield bcryptjs_1.default.hash(data.password, 10);
@@ -25,10 +26,25 @@ function createUser(data) {
 }
 function getUsers() {
     return __awaiter(this, void 0, void 0, function* () {
+        // return User.findAll({
+        //     include: {
+        //         model: Profile, 
+        //         as: "profile"
+        //     }
+        // });
         return user_model_1.User.findAll({
             include: {
-                model: profile_model_1.Profile,
-                as: "profile"
+                model: posts_model_1.Post,
+                as: "post"
+            }
+        });
+    });
+}
+function deleteUser(data) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return user_model_1.User.destroy({
+            where: {
+                employeeId: data.employeeId,
             }
         });
     });

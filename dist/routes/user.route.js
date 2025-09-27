@@ -38,12 +38,16 @@ const express_1 = require("express");
 const userController = __importStar(require("../controllers/user.controller"));
 const testuserController = __importStar(require("../controllers/testuser.controller"));
 const postController = __importStar(require("../controllers/post.controller"));
+const studentCourseController = __importStar(require("../controllers/student-course.controller"));
 const router = (0, express_1.Router)();
 router.post("/register", userController.createUser);
+router.delete("/delete", userController.deleteUser);
 router.post("/test-register", testuserController.createUser);
 router.post("/test-register-users", testuserController.createUsers);
 // router.get("/testGetAllUsers", testuserController.getAllUsers);
 router.get("/all-users", userController.getUsers);
 // posts routes
-router.post("createPost", postController.createPost);
+router.post("/createPost", postController.createPost);
+router.post("/createStudentCourse", studentCourseController.createTest);
+router.get("/getStudentCourse", studentCourseController.getTest);
 exports.userRoute = router;

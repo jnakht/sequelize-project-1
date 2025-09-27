@@ -4,8 +4,9 @@
 
 
 
-import { DataTypes, Model, Optional } from "sequelize";
+import { BelongsToManyAddAssociationMixin, DataTypes, Model, Optional } from "sequelize";
 import { sequelize } from "../config/db"
+import { Course } from "./course.model";
 
 export interface StudentAttributes {
     id: number;
@@ -22,6 +23,7 @@ export class Student
     public id!: number;
     public name!: string;
     // public userId!: number;
+    public addCourse!: BelongsToManyAddAssociationMixin<Course, number>;
     
 
     // timestamps

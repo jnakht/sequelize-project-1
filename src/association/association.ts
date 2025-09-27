@@ -20,7 +20,7 @@ Profile.belongsTo(User, {
 // one to many
 User.hasMany(Post, {
     foreignKey: 'userId',
-    as: 'post'
+    as: 'posts'
 })
 
 Post.belongsTo(User, {

@@ -9,25 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createPost = createPost;
-exports.getPostWithUser = getPostWithUser;
-const posts_model_1 = require("../models/posts.model");
-const user_model_1 = require("../models/user.model");
-function createPost(data) {
+exports.createTest = createTest;
+exports.getTest = getTest;
+const course_model_1 = require("../models/course.model");
+const student_model_1 = require("../models/student.model");
+function createTest() {
     return __awaiter(this, void 0, void 0, function* () {
-        return posts_model_1.Post.create(data);
+        const jisan = yield student_model_1.Student.create({ name: "Jisan" });
+        const nadim = yield student_model_1.Student.create({ name: "Nadim" });
+        const jishi = yield student_model_1.Student.create({ name: "Jishi" });
+        const phy = yield course_model_1.Course.create({ title: "physics" });
+        const eng = yield course_model_1.Course.create({ title: "english" });
+        yield jisan.addCourse(phy);
+        return eng;
     });
 }
-function getPostWithUser() {
+function getTest() {
     return __awaiter(this, void 0, void 0, function* () {
-        // lazy loading
-        const allUser = yield user_model_1.User.findAll();
-        const user = yield user_model_1.User.findByPk(1);
-        // this getPosts() method is dynamically made by sequelize
-        if (!user) {
-            throw new Error("user not found!");
-        }
-        const posts = yield user.getPosts();
-        return posts;
+        const test = yield student_model_1.Student.findAll({
+            include: course_model_1.Course
+        });
+        return test;
     });
 }

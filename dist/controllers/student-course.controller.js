@@ -42,39 +42,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = createUser;
-exports.getUsers = getUsers;
-exports.deleteUser = deleteUser;
-const userService = __importStar(require("../services/user.services"));
-function createUser(req, res) {
+exports.createTest = createTest;
+exports.getTest = getTest;
+const studentCourseService = __importStar(require("../services/student-course.service"));
+function createTest(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const user = yield userService.createUser(req.body);
-            // const profile = await profileService.createProfile({ bio: "Hufflepuff", userId: user.employeeId as number });
-            res.status(201).json(user);
+            const studentCourse = yield studentCourseService.createTest();
+            res.status(201).json(studentCourse);
         }
         catch (error) {
             res.status(400).json({ error: error.message });
         }
     });
 }
-function getUsers(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const users = yield userService.getUsers();
-        //remove password and send 
-        // const safeUsers = users.map( (user) => {
-        //     const { password, ...data } = user.toJSON();
-        //     return data;
-        // })
-        // res.json(safeUsers);
-        res.json(users);
-    });
-}
-function deleteUser(req, res) {
+function getTest(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const deletedUser = yield userService.deleteUser(req.body);
-            res.status(201).json(deletedUser);
+            const studentCourse = yield studentCourseService.getTest();
+            res.status(201).json(studentCourse);
         }
         catch (error) {
             res.status(400).json({ error: error.message });

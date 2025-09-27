@@ -1,29 +1,29 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Post = void 0;
+exports.Course = void 0;
 const sequelize_1 = require("sequelize");
 const db_1 = require("../config/db");
-class Post extends sequelize_1.Model {
+class Course extends sequelize_1.Model {
 }
-exports.Post = Post;
-Post.init({
+exports.Course = Course;
+Course.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         unique: true,
     },
-    content: {
+    title: {
         type: sequelize_1.DataTypes.STRING(50),
-        allowNull: true,
-    },
-    userId: {
-        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
+    // userId: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    // },
 }, {
     sequelize: db_1.sequelize,
-    tableName: "post",
-    modelName: "Post",
+    tableName: "course",
+    modelName: "Course",
     timestamps: true,
 });

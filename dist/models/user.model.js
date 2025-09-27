@@ -36,7 +36,9 @@ User.init({
     },
 }, {
     sequelize: db_1.sequelize,
+    paranoid: true,
     tableName: "users",
     modelName: "User",
     timestamps: true,
+    deletedAt: true,
 });
