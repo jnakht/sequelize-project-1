@@ -21,6 +21,10 @@ User.init({
         allowNull: false,
         validate: { isEmail: true },
     },
+    postCount: {
+        type: sequelize_1.DataTypes.NUMBER,
+        allowNull: false,
+    },
     phone: {
         type: sequelize_1.DataTypes.STRING(20),
         allowNull: false,

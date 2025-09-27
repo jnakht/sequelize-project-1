@@ -9,6 +9,7 @@ export interface UserAttributes {
     phone: string;
     password: string;
     role: "admin" | "hr" | "employee";
+    postCount: number;
 }
 
 type UserCreationAttributes = Optional<UserAttributes, "employeeId">;
@@ -23,6 +24,7 @@ export class User
     public phone!: string;
     public password!: string;
     public role!: "admin" | "hr" | "employee";
+    public postCount!: number;
     public getPosts!: HasManyGetAssociationsMixin<Post>;
 
     // timestamps
@@ -45,6 +47,10 @@ User.init(
             type: DataTypes.STRING(100),
             allowNull: false,
             validate: { isEmail: true },
+        },
+        postCount: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         phone: {
             type: DataTypes.STRING(20),

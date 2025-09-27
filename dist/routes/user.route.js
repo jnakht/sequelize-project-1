@@ -48,6 +48,7 @@ router.post("/test-register-users", testuserController.createUsers);
 router.get("/all-users", userController.getUsers);
 // posts routes
 router.post("/createPost", postController.createPost);
+router.get("/getPost", postController.getPost);
 router.post("/createStudentCourse", studentCourseController.createTest);
 router.get("/getStudentCourse", studentCourseController.getTest);
 exports.userRoute = router;

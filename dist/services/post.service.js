@@ -11,11 +11,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createPost = createPost;
 exports.getPostWithUser = getPostWithUser;
+const db_1 = require("../config/db");
 const posts_model_1 = require("../models/posts.model");
 const user_model_1 = require("../models/user.model");
+// export async function createPost( data: {
+//     content: string;
+//     userId: number;
+// }) {
+//     return Post.create(data);
+// }
+// createPost updated code(postCount handled)
 function createPost(data) {
     return __awaiter(this, void 0, void 0, function* () {
-        return posts_model_1.Post.create(data);
+        const result = yield db_1.sequelize.transaction((t) => __awaiter(this, void 0, void 0, function* () {
+            const post = yield posts_model_1.Post.create(data, { transaction: t });
+            const user = yield user_model_1.User.findByPk(post.userId, { transaction: t });
+            if (!user) {
+                throw new Error("user not found!");
+            }
+            yield user.update({ postCount: (user.postCount || 0) + 1 }, { transaction: t });
+            return post;
+        }));
+        return result;
     });
 }
 function getPostWithUser() {

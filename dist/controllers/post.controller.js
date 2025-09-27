@@ -43,12 +43,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createPost = createPost;
+exports.getPost = getPost;
 const postService = __importStar(require("../services/post.service"));
 function createPost(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const post = yield postService.createPost(req.body);
             res.status(201).json(post);
+        }
+        catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    });
+}
+function getPost(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const getPostWithUser = yield postService.getPostWithUser();
+            res.status(201).json(getPostWithUser);
         }
         catch (error) {
             res.status(400).json({ error: error.message });

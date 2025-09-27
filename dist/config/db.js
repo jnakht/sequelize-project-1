@@ -18,6 +18,12 @@ exports.sequelize = new sequelize_1.Sequelize(env_1.env.db.name, env_1.env.db.us
     port: env_1.env.db.port,
     dialect: "mysql",
     logging: false,
+    pool: {
+        max: 10,
+        min: 2,
+        acquire: 30000,
+        idle: 10000
+    }
 });
 function connectAndSync() {
     return __awaiter(this, void 0, void 0, function* () {

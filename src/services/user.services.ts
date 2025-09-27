@@ -12,6 +12,7 @@ export async function createUser( data: {
     employeeId: number;
     password: string;
     role: "admin" | "hr" | "employee";
+    postCount: number;
 }) {
     const hashedPassword = await bcrypt.hash(data.password, 10);
     return User.create({ ...data, password: hashedPassword });

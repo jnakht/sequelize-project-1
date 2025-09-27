@@ -8,6 +8,12 @@ export const sequelize = new Sequelize(env.db.name, env.db.user, env.db.pass, {
     port: env.db.port,
     dialect: "mysql",
     logging: false,
+    pool: {
+        max: 10,
+        min: 2,
+        acquire: 30000,
+        idle: 10000
+    }
 })
 
 export async function connectAndSync() {
@@ -16,6 +22,6 @@ export async function connectAndSync() {
 
     await sequelize.sync({ force: true });
     // await sequelize.sync();
-    
+
     console.log("✅ Tables Created Or Updated!");
 }
