@@ -3,6 +3,7 @@ import * as userController from "../controllers/user.controller"
 import * as testuserController from "../controllers/testuser.controller"
 import * as postController from "../controllers/post.controller"
 import * as studentCourseController from "../controllers/student-course.controller"
+import * as employeeController from "../controllers/employee.controller"
 
 const router = Router();
 
@@ -20,5 +21,8 @@ router.get("/getPost", postController.getPost);
 router.post("/createStudentCourse", studentCourseController.createTest);
 router.get("/getStudentCourse", studentCourseController.getTest);
 
+
+// employee creatioin routes
+router.post("/create-employee", employeeController.createEmployee);
 
 export const userRoute = router;
