@@ -22,7 +22,7 @@ User.init({
         validate: { isEmail: true },
     },
     postCount: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     phone: {

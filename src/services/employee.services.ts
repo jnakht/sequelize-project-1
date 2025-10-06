@@ -7,7 +7,7 @@ export async function createEmployee( data: {
     // id: number;
 }) {
     const employee = await Employee.create({ ...data });
-    console.log(employee);
+    // console.log(employee);
 
     // const employeeId = `EMP${employee.id}`;
     // const updatedEmployee = await Employee.update({
@@ -18,5 +18,27 @@ export async function createEmployee( data: {
     //     }
     // })
     // return employee.reload();
+
+
+
+    await employee.reload();
     return employee;
+}
+
+
+
+
+export async function getAllEmployees() {
+    const allEmployees = await Employee.findAll({});
+    return allEmployees;
+}
+export async function deleteAEmployee(data: {
+    id: number
+}) {
+    const deleteEmployee = await Employee.destroy({
+        where: {
+            id: data.id
+        }
+    })
+    return deleteEmployee;
 }

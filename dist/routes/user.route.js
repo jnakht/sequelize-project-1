@@ -39,6 +39,7 @@ const userController = __importStar(require("../controllers/user.controller"));
 const testuserController = __importStar(require("../controllers/testuser.controller"));
 const postController = __importStar(require("../controllers/post.controller"));
 const studentCourseController = __importStar(require("../controllers/student-course.controller"));
+const employeeController = __importStar(require("../controllers/employee.controller"));
 const router = (0, express_1.Router)();
 router.post("/register", userController.createUser);
 router.delete("/delete", userController.deleteUser);
@@ -51,4 +52,8 @@ router.post("/createPost", postController.createPost);
 router.get("/getPost", postController.getPost);
 router.post("/createStudentCourse", studentCourseController.createTest);
 router.get("/getStudentCourse", studentCourseController.getTest);
+// employee creatioin routes
+router.post("/create-employee", employeeController.createEmployee);
+router.get("/getAll-employees", employeeController.getAllEmployees);
+router.delete("/delete-employee", employeeController.deleteAEmployee);
 exports.userRoute = router;

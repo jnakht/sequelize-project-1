@@ -59,3 +59,19 @@ Employee.init(
         deletedAt: true,
     }
 )
+
+
+Employee.beforeCreate( async (employee, _options) => {
+    const lastEmployee = await Employee.findOne({
+        order: [['id', 'DESC']],
+        paranoid: false,
+    })
+
+    let nextNumber = 1;
+    if (lastEmployee?.employeeId) {
+        const lastNumber = parseInt(lastEmployee?.employeeId.replace("EMP", ""), 10);
+        nextNumber = lastNumber + 1;
+    }
+
+    employee.employeeId = `EMP${String(nextNumber).padStart(3, "0")}`;
+})

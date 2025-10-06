@@ -24,5 +24,6 @@ router.get("/getStudentCourse", studentCourseController.getTest);
 
 // employee creatioin routes
 router.post("/create-employee", employeeController.createEmployee);
-
+router.get("/getAll-employees", employeeController.getAllEmployees);
+router.delete("/delete-employee", employeeController.deleteAEmployee);
 export const userRoute = router;
